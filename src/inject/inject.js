@@ -18,20 +18,27 @@ function traversePrices($prices, fn) {
     })
 }
 
+function makePricesGreatAgain() {
+    var prices = $(document.body).find(".price,.catalogArticlesList_price"),
+        salesFn = calculatePrice.bind(null, 0.6);
+
+    traversePrices(prices, $el => {
+        var oldText = $el.text(),
+            newText = oldText.replace(priceRegex, match => salesFn(match));
+        if (oldText !== newText) {
+            $el.text("*" + newText);
+            console.debug(oldText, "-->", newText)
+        } else {
+            console.debug(oldText, " = ", newText)
+        }
+    });
+}
+
 chrome.extension.sendMessage({}, function(response) {
 	var readyStateCheckInterval = setInterval(function() {
 	if (document.readyState === "complete") {
 		clearInterval(readyStateCheckInterval);
-        var prices = $(document.body).find(".price,.catalogArticlesList_price"),
-            salesFn = calculatePrice.bind(null, 0.6);
-
-        traversePrices(prices, $el => {
-            var oldText = $el.text(),
-                newText = oldText.replace(priceRegex, match => salesFn(match));
-            if (oldText !== newText) {
-                $el.text("*" + newText);
-            }
-        })
+        setInterval(makePricesGreatAgain, 2000)
 	}
 	}, 10);
 });
