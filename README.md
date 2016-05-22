@@ -2,6 +2,8 @@
 
 A Chrome extension that reduces prices on zalando.de by 40 %.
 
+![example](example.gif)
+
 ## Installation
 
 1. Download as zip or clone
