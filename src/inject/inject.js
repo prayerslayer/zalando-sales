@@ -24,8 +24,8 @@ function traversePrices($prices, fn) {
 }
 
 function makePricesGreatAgain() {
-    var prices = $(document.body).find(priceCss.join(',')),
-        salesFn = calculatePrice.bind(null, 0.6);
+    const prices = $(document.body).find(priceCss.join(',')),
+         salesFn = calculatePrice.bind(null, 0.6);
 
     traversePrices(prices, $el => {
         var oldText = $el.text(),
@@ -40,6 +40,10 @@ function makePricesGreatAgain() {
 }
 
 chrome.extension.sendMessage({}, function(response) {
+    // do not change prices on checkout page
+    if (window.location.pathname.indexOf('/kasse/uebersicht') === 0) {
+        return;
+    }
 	var readyStateCheckInterval = setInterval(function() {
 	if (document.readyState === "complete") {
 		clearInterval(readyStateCheckInterval);
