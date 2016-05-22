@@ -28,11 +28,11 @@ function makePricesGreatAgain() {
          salesFn = calculatePrice.bind(null, 0.6);
 
     traversePrices(prices, $el => {
-        var oldText = $el.text(),
+        var oldText = $el.text().trim(),
             newText = oldText.replace(priceRegex, salesFn);
         if (oldText !== newText) {
             $el.text('*' + newText);
-            $el.attr('title', oldText.trim());
+            $el.attr('title', oldText);
             console.debug(oldText, '-->', newText)
         } else {
             console.debug(oldText, ' = ', newText)
