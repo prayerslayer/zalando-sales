@@ -1,6 +1,6 @@
 # zalando sales
 
-A Chrome extension that reduces prices on zalando.de by 40 %.
+A Chrome extension that displays reduced prices on zalando.de.
 
 ![example](example.gif)
 
