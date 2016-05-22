@@ -7,7 +7,7 @@ const priceCss = [
 
 function calculatePrice(factor, price) {
     if (typeof price === 'string') {
-        price = parseFloat(price.replace(",", "."));
+        price = parseFloat(price.replace(',', '.'));
     }
     return (price * factor).toFixed(2);
 }
@@ -31,10 +31,11 @@ function makePricesGreatAgain() {
         var oldText = $el.text(),
             newText = oldText.replace(priceRegex, salesFn);
         if (oldText !== newText) {
-            $el.text("*" + newText);
-            console.debug(oldText, "-->", newText)
+            $el.text('*' + newText);
+            $el.attr('title', oldText.replace(/\s/, ''));
+            console.debug(oldText, '-->', newText)
         } else {
-            console.debug(oldText, " = ", newText)
+            console.debug(oldText, ' = ', newText)
         }
     });
 }
@@ -45,7 +46,7 @@ chrome.extension.sendMessage({}, function(response) {
         return;
     }
 	var readyStateCheckInterval = setInterval(function() {
-	if (document.readyState === "complete") {
+	if (document.readyState === 'complete') {
 		clearInterval(readyStateCheckInterval);
         setInterval(makePricesGreatAgain, 2000)
 	}
