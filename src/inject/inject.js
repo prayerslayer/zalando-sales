@@ -32,7 +32,7 @@ function makePricesGreatAgain() {
             newText = oldText.replace(priceRegex, salesFn);
         if (oldText !== newText) {
             $el.text('*' + newText);
-            $el.attr('title', oldText.replace(/\s/, ''));
+            $el.attr('title', oldText.trim());
             console.debug(oldText, '-->', newText)
         } else {
             console.debug(oldText, ' = ', newText)
