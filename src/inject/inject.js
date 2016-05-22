@@ -29,7 +29,7 @@ function makePricesGreatAgain() {
 
     traversePrices(prices, $el => {
         var oldText = $el.text(),
-            newText = oldText.replace(priceRegex, match => salesFn(match));
+            newText = oldText.replace(priceRegex, salesFn);
         if (oldText !== newText) {
             $el.text("*" + newText);
             console.debug(oldText, "-->", newText)
