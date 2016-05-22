@@ -1,5 +1,9 @@
 const priceRegex = /\d+,\d{2}/g;
-const priceCss = ['.price', '.z-dz-price', '.catalogArticlesList_price'];
+const priceCss = [
+    '.price',
+    '.z-dz-price',
+    '.catalogArticlesList_price',
+    '.grandTotal'];
 
 function calculatePrice(factor, price) {
     if (typeof price === 'string') {
